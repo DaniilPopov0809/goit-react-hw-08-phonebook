@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
+import { Input } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react'
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -44,38 +46,40 @@ const Register = () => {
     <form onSubmit={handleSubmit}>
       <label>
         Name
-        <input
+        <Input
           type="text"
           name="name"
           value={name}
           onChange={handleChange}
           required
+          placeholder="Enter name"
         />
       </label>
       <label>
         Email
-        <input
+        <Input
           type="email"
           name="email"
           value={email}
           onChange={handleChange}
           required
+          placeholder="Enter email"
         />
       </label>
       <label>
         Password
-        <input
+        <Input
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
           type="password"
           name="password"
           required
-          placeholder=" "
+          placeholder="Enter password"
           value={password}
           onChange={handleChange}
         />
       </label>
 
-      <button type="submit">Register</button>
+      <Button type="submit">Register</Button>
     </form>
   );
 };
