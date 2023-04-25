@@ -1,9 +1,9 @@
 
 import { List, Button, Container, Item } from './ContactsList.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectFilter, selectVisibleContacts } from 'redux/selectors';
+import { selectContacts, selectFilter, selectVisibleContacts } from 'redux/contacts/selectors';
 import { useEffect } from 'react';
-import { fetchContacts, deleteContact } from 'redux/operations';
+import { fetchContacts, deleteContact } from 'redux/contacts/operations';
 
 const ContactsList = () => {
   const dispatch = useDispatch();
@@ -22,10 +22,10 @@ const ContactsList = () => {
       {items.length === 0 && visibleContacts.length === 0 && !error && <h3>No contacts!</h3>}
       {items.length !== 0 && visibleContacts.length === 0 && !error && <h3>Contacts '{filter}' not found!</h3>} 
       <List>
-        {visibleContacts.map(({ id, name, phone }) => (
+        {visibleContacts.map(({ id, name, number }) => (
           <Item key={id}>
             <Container>
-              {name}: {phone}
+              {name}: {number}
             </Container>
             <Button type="button" onClick={() => dispatch(deleteContact(id))}>
               Delete

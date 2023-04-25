@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Input, Button, Form, Label } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContactsItems } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { selectContactsItems } from 'redux/contacts/selectors';
 
 export default function ContactsForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsItems);
@@ -19,7 +19,7 @@ export default function ContactsForm() {
         break;
       }
       case 'number': {
-        setPhone(value);
+        setNumber(value);
         break;
       }
 
@@ -37,14 +37,14 @@ export default function ContactsForm() {
     if (findName.length !== 0) {
       alert(`${name} is already in contacts.`);
     } else {
-      dispatch(addContact({name, phone}));
+      dispatch(addContact({name, number}));
     }
     reset();
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -69,7 +69,7 @@ export default function ContactsForm() {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleInputChange}
         />
       </Label>
