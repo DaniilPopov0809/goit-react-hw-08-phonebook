@@ -5,7 +5,7 @@ import { LinkNav } from './Navigation.styled';
 
 const Navigation = () => {
   return (
-    <Breadcrumb separator="">
+    <Breadcrumb separator="" marginRight={{base: '4', md: '0'}}>
       <BreadcrumbItem >
         <BreadcrumbLink as={LinkNav} to="/"  >
           Home

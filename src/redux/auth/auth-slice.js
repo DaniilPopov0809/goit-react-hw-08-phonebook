@@ -21,12 +21,17 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         toast.success('Registration is successful');
       })
-      .addCase(authOperation.register.rejected, state => state)
+      .addCase(authOperation.register.rejected, () => {
+        toast.error('Registration is failed. Try again.');
+      })
       .addCase(authOperation.login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        toast.success('Login is successful');
+        toast.success('Login is successful!');
+      })
+      .addCase(authOperation.login.rejected, () => {
+        toast.error('Login is failed. Try to register.');
       })
       .addCase(authOperation.logOut.fulfilled, state => {
         state.user = { name: null, email: null };
