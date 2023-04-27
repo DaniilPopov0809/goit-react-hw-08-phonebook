@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import authOperations from 'redux/auth/auth-operations';
 import Layout from './Layout/Layout';
-import {PrivateRoute} from './Routes/PrivateRoute';
+import { PrivateRoute } from './Routes/PrivateRoute';
 import { PublicRoute } from './Routes/PublicRoute';
+import { Box, Center } from '@chakra-ui/react';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Register = lazy(() => import('../pages/Register/Register'));
@@ -23,14 +24,27 @@ export default function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    'Refres user data...'
+    <Center h="100vh">
+      <Box as="p" fontSize="2xl">
+        Refresh user data...
+      </Box>
+    </Center>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/register" element={<PublicRoute component={Register} redirectTo = '/contacts' />}/>
-        <Route path="/login" element={<PublicRoute component={Login} redirectTo = '/contacts' />} />
-        <Route path="/contacts" element={<PrivateRoute component={Contacts} redirectTo = '/login' />} />
+        <Route
+          path="/register"
+          element={<PublicRoute component={Register} redirectTo="/contacts" />}
+        />
+        <Route
+          path="/login"
+          element={<PublicRoute component={Login} redirectTo="/contacts" />}
+        />
+        <Route
+          path="/contacts"
+          element={<PrivateRoute component={Contacts} redirectTo="/login" />}
+        />
       </Route>
     </Routes>
   );

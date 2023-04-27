@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
-import { Input } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/react'
+import { Input, FormControl, Button, FormLabel, Flex } from '@chakra-ui/react';
+import { nanoid } from 'nanoid';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -38,32 +38,47 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email
-        <Input
-          type="email"
-          required
-          name="email"
-          value={email}
-          placeholder="Enter email"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Password
-        <Input
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-          type="password"
-          name="password"
-          required
-          placeholder="Enter password"
-          value={password}
-          onChange={handleChange}
-        />
-      </label>
-      <Button type="submit">Login</Button>
-    </form>
+    <Flex justifyContent="center">
+      <FormControl
+        borderRadius="10px"
+        border="1px"
+        p="4"
+        borderColor="inherit"
+        onSubmit={handleSubmit}
+        width="100%"
+        maxWidth="400px"
+        isRequired
+      >
+        <form>
+          <FormLabel>Email</FormLabel>
+          <Input
+            type="email"
+            required
+            name="email"
+            value={email}
+            placeholder="Enter email"
+            onChange={handleChange}
+            id={nanoid()}
+          />
+
+          <FormLabel>Password</FormLabel>
+          <Input
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+            type="password"
+            name="password"
+            required
+            placeholder="Enter password"
+            value={password}
+            onChange={handleChange}
+            id={nanoid()}
+          />
+
+          <Button type="submit" marginTop="10px">
+            Login
+          </Button>
+        </form>
+      </FormControl>
+    </Flex>
   );
 };
 

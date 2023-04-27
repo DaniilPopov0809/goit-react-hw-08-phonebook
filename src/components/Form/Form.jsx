@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Input, Button, Form, Label } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { selectContactsItems } from 'redux/contacts/selectors';
+import { Button, Input, FormControl, FormLabel } from '@chakra-ui/react';
+import { toast } from 'react-toastify';
+import { nanoid } from 'nanoid';
 
 export default function ContactsForm() {
   const [name, setName] = useState('');
@@ -35,9 +37,9 @@ export default function ContactsForm() {
       contact => contact.name.toLocaleLowerCase() === normalizateName
     );
     if (findName.length !== 0) {
-      alert(`${name} is already in contacts.`);
+      toast.error('This contact alredy save');
     } else {
-      dispatch(addContact({name, number}));
+      dispatch(addContact({ name, number }));
     }
     reset();
   };
@@ -48,9 +50,16 @@ export default function ContactsForm() {
   };
 
   return (
-    <Form onSubmit={handleSumbit}>
-      <Label>
-        Name
+    <FormControl
+      borderRadius="10px"
+      border="1px"
+      p={4}
+      borderColor="inherit"
+      marginBottom={4}
+      isRequired
+    >
+      <form onSubmit={handleSumbit}>
+        <FormLabel>Name</FormLabel>
         <Input
           type="text"
           name="name"
@@ -58,11 +67,12 @@ export default function ContactsForm() {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
+          placeholder="Enter name"
           onChange={handleInputChange}
+          id={nanoid()}
         />
-      </Label>
-      <Label>
-        Number
+
+        <FormLabel>Number</FormLabel>
         <Input
           type="tel"
           name="number"
@@ -70,10 +80,15 @@ export default function ContactsForm() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
+          placeholder="Enter phone number"
           onChange={handleInputChange}
+          id={nanoid()}
         />
-      </Label>
-      <Button type="submit">Add contact</Button>
-    </Form>
+
+        <Button marginTop="10px" type="submit">
+          Add contact
+        </Button>
+      </form>
+    </FormControl>
   );
 }

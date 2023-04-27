@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
-import { Input } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/react'
+import { Button, Input, FormControl, FormLabel } from '@chakra-ui/react';
+import { nanoid } from 'nanoid';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -43,9 +43,17 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name
+    <FormControl
+      borderRadius="10px"
+      border="1px"
+      p="4"
+      borderColor="inherit"
+      width="100%"
+      maxWidth="400px"
+      isRequired
+    >
+      <form onSubmit={handleSubmit}>
+        <FormLabel>Name</FormLabel>
         <Input
           type="text"
           name="name"
@@ -53,10 +61,9 @@ const Register = () => {
           onChange={handleChange}
           required
           placeholder="Enter name"
+          id={nanoid()}
         />
-      </label>
-      <label>
-        Email
+        <FormLabel>Email</FormLabel>
         <Input
           type="email"
           name="email"
@@ -64,23 +71,26 @@ const Register = () => {
           onChange={handleChange}
           required
           placeholder="Enter email"
+          id={nanoid()}
         />
-      </label>
-      <label>
-        Password
+        <FormLabel>Password</FormLabel>
         <Input
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+          title="Password must be 8 symbol or more"
           type="password"
           name="password"
           required
           placeholder="Enter password"
           value={password}
           onChange={handleChange}
+          id={nanoid()}
         />
-      </label>
 
-      <Button type="submit">Register</Button>
-    </form>
+        <Button marginTop="10px" type="submit">
+          Register
+        </Button>
+      </form>
+    </FormControl>
   );
 };
 

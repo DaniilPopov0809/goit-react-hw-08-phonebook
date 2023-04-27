@@ -1,16 +1,18 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { LinkNav } from './Navigation.styled';
+
+
 
 const Navigation = () => {
   return (
     <Breadcrumb separator="">
-      <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/">
+      <BreadcrumbItem >
+        <BreadcrumbLink as={LinkNav} to="/"  >
           Home
         </BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/contacts">
+      </BreadcrumbItem >
+      <BreadcrumbItem >
+        <BreadcrumbLink as={LinkNav} to="/contacts" >
           Contacts
         </BreadcrumbLink>
       </BreadcrumbItem>

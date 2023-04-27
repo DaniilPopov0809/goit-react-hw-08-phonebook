@@ -3,16 +3,30 @@ import AuthNav from 'components/AuthNav/AuthNav';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
+import { Box, Flex } from '@chakra-ui/react';
 
 const AppBar = () => {
-    const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <header>
-      <Navigation />
-   {isLoggedIn ? <UserMenu /> : <AuthNav />} 
-     
-    </header>
+    <Flex justifyContent="center">
+      <Box
+        as="header"
+        width={{ base: '480px', md: '768px', lg: '1280px' }}
+        py="2"
+        fontSize={{ base: '1xl', md: '2xl' }}
+      >
+        <Flex
+          justifyContent={{ base: 'center', sm: 'space-between' }}
+          alignItems="center"
+          flexWrap="wrap"
+          flexDirection={{ base: 'column', sm: 'row' }}
+        >
+          <Navigation />
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        </Flex>
+      </Box>
+    </Flex>
   );
 };
 

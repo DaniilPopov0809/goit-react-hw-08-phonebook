@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { LinkNav } from "components/Navigation/Navigation.styled";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,22 +7,14 @@ import {
 
 const AuthNav = () => {
   return (
-    // <ul>
-    //   <li>
-    //     <NavLink to={'/register'}>Register</NavLink>
-    //   </li>
-    //   <li>
-    //     <NavLink to={'/login'}>Login</NavLink>
-    //   </li>
-    // </ul>
     <Breadcrumb separator=''>
     <BreadcrumbItem >
-      <BreadcrumbLink as={Link} to='/register'>
+      <BreadcrumbLink as={LinkNav} to='/register'>
       Register
       </BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbItem>
-      <BreadcrumbLink as={Link} to='/login'>
+      <BreadcrumbLink as={LinkNav} to='/login'>
       Login
       </BreadcrumbLink>
     </BreadcrumbItem>
