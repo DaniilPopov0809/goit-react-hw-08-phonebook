@@ -14,10 +14,10 @@ const AppBar = () => {
         as="header"
         width={{ base: '480px', md: '768px', lg: '1280px' }}
         py="2"
-        fontSize={{ base: '1xl', md: '2xl' }}
+        fontSize='2xl'
       >
         <Flex
-          justifyContent={{ base: 'center', sm: 'space-between' }}
+          justifyContent={{ base: 'center', md: 'space-between' }}
           alignItems="center"
           flexWrap="wrap"
           flexDirection={{ base: 'column', sm: 'row' }}
