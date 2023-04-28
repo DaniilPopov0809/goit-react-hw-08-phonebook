@@ -14,7 +14,7 @@ const UserMenu = () => {
     <Box>
       <Flex alignItems="center">
         <Avatar name="avatar" src={avatar} size="sm" marginRight={2} />
-        <Box marginRight={2}>Welcome, <Text as='span' color='blue'>{name}</Text></Box>
+        <Box marginRight={2}><Text as='span' color='blue'>{name}</Text></Box>
         <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
           Logout
         </Button>

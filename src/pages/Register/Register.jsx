@@ -75,8 +75,8 @@ const Register = () => {
         />
         <FormLabel>Password</FormLabel>
         <Input
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-          title="Password must be 8 symbol or more"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="The password must be 8 characters or more and contain numbers and capital letters."
           type="password"
           name="password"
           required
